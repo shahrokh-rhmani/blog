@@ -1,0 +1,11 @@
+{% extends '_base.html' %}
+{% load static %}
+
+{% block title %}Post-List{% endblock %}
+{% block content %}
+  {% for post in posts %}
+    <h2>
+      <a href="#">{{post.title}}</a>
+    </h2>
+  {% endfor %}
+{% endblock %}
