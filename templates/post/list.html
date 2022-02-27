@@ -2,13 +2,17 @@
 {% load static %}
 
 {% block title %}Post-List{% endblock %}
+
+
 {% block content %}
   {% for post in posts %}
-    <h2>
+    <h2 class='#'>
       <a href="#">{{post.title}}</a>
     </h2>
-    <p class="">
+    <p class="#">
       Published {{post.publish}} by {{post.author}}
     </p>
+    <p class='description'>{{post.description|truncatewords:30}}<p>
+
   {% endfor %}
 {% endblock %}
