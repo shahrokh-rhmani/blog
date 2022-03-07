@@ -5,7 +5,7 @@ from .models import Post
 
 
 def post_list(request):
-    posts = Post.objects.all()
+    posts = Post.published.all()
 
     context = {
         'posts':posts,

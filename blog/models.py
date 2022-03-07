@@ -4,6 +4,11 @@ from django.utils import timezone
 from django.urls import reverse
 
 
+
+class PublishManager(models.Manager):
+    def get_queryset(self):
+        return super(PublishManager, self).get_queryset().filter(status=True)
+
 class Post(models.Model):
     title = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255)
@@ -20,6 +25,9 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    objects = models.Manager()
+    published = PublishManager()
 
 
     def get_absolute_url(self):
