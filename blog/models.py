@@ -12,7 +12,7 @@ class PublishManager(models.Manager):
 class Post(models.Model):
     title = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255)
-    image = models.ImageField(upload_to='img/', blank=True)
+    image = models.ImageField(upload_to='images/%Y/%m/%d', blank=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
     description = models.TextField()
     publish = models.DateTimeField(default=timezone.now)
