@@ -1,10 +1,18 @@
 {% extends '_base.html' %}
+
 {% load static %}
 
 {% block title %}Post-List{% endblock %}
 
 
+
+
+
 {% block content %}
+
+
+
+
   {% for post in posts %}
     <h2 class='#'>
       <a href="{{ post.get_absolute_url }}">{{post.title}}</a>
