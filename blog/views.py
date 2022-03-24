@@ -11,9 +11,10 @@ def post_list(request, category_slug=None):
     if category_slug:
         category = get_object_or_404(Category, slug=category_slug)
         posts = posts.filter(category=category)
-        return render(request, 'post/list.html', {'posts':posts,'category':category, 'categories':categories})
+        return render(request, 'post/list.html', {'section':'post_category','posts':posts,'category':category, 'categories':categories})
     else:
         context = {
+            'section':'post_list',
             'posts':posts,
             'category': category,
             'categories': categories,
