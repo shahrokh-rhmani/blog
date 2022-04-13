@@ -12,13 +12,25 @@
           <a class="nav-link" href="{% url 'blog:post_list' %}">Home <span class="sr-only">(current)</span></a>
         </li>
 
+
         <li class="nav-item dropdown {% if section == 'post_category' %}active{% endif %}">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             categories
           </a>
         {% include 'post/category.html' %}
         </li>
+        {% if request.user.is_authenticated %}
+        <li class="nav-item active ml-5">
+          <a class="nav-link" href="{% url 'logout' %}">logout <span class="sr-only">(current)</span></a>
+        </li>
+        {% else %}
+        <li class="nav-item active ml-5">
+          <a class="nav-link" href="{% url 'login' %}">login <span class="sr-only">(current)</span></a>
+        </li>
+        {% endif %}
       </ul>
+
+
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
