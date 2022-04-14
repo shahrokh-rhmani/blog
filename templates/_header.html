@@ -20,11 +20,13 @@
         {% include 'post/category.html' %}
         </li>
         {% if request.user.is_authenticated %}
-        <li class="nav-item active ml-5">
+        {% url 'logout' as url %}
+        <li class="nav-item ml-5 {% if request.path == url %}active{% endif %}">
           <a class="nav-link" href="{% url 'logout' %}">logout <span class="sr-only">(current)</span></a>
         </li>
         {% else %}
-        <li class="nav-item active ml-5">
+        {% url 'login' as url %}
+        <li class="nav-item  ml-5 {% if request.path == url %}active{% endif %}">
           <a class="nav-link" href="{% url 'login' %}">login <span class="sr-only">(current)</span></a>
         </li>
         {% endif %}
