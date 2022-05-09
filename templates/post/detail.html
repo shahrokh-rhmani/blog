@@ -15,6 +15,6 @@
   </p>
   {{post.description}}
   {% else %}
-    <p><a href="#">Login</a> to view article.</p>
+    <p><a href="{% url 'login' %}">Login</a> to view article.</p>
   {% endif %}
 {% endblock %}
