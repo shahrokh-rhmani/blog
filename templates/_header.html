@@ -25,8 +25,11 @@
           <a class="nav-link" href="{% url 'logout' %}">logout <span class="sr-only">(current)</span></a>
         </li>
         {% else %}
-        {% url 'login' as url %}
         <li class="nav-item  ml-5 {% if request.path == url %}active{% endif %}">
+          <a class="nav-link" href="{% url 'register' %}">Register <span class="sr-only">(current)</span></a>
+        </li>
+        {% url 'login' as url %}
+        <li class="nav-item  {% if request.path == url %}active{% endif %}">
           <a class="nav-link" href="{% url 'login' %}">login <span class="sr-only">(current)</span></a>
         </li>
         {% endif %}
