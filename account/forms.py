@@ -1,12 +1,14 @@
 from django import forms
-from django.contrib.auth.models import User
+
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from .models import User
 
 class LoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
 
 
-class UserRegistrationForm(forms.ModelForm):
+class UserRegistrationForm(UserCreationForm):
     password = forms.CharField(label='Password',
                                 widget=forms.PasswordInput)
     password2 = forms.CharField(label='Repeat Password',
