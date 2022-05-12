@@ -1,7 +1,7 @@
 from django import forms
-
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import User
+
 
 class LoginForm(forms.Form):
     username = forms.CharField()
@@ -22,3 +22,17 @@ class UserRegistrationForm(UserCreationForm):
         if cd['password'] != cd['password2']:
             raise forms.ValidationError('passwords don\'t match.')
         return cd['password']
+
+
+class FormProfile(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user')
+        super(FormProfile, self).__init__(*args, **kwargs)
+        self.fields['username'].help_text = None
+        if not user.is_superuser:
+            self.fields['username'].disabled = True
+            self.fields['email'].disabled = True
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'first_name', 'last_name']
