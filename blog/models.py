@@ -7,7 +7,7 @@ from django.urls import reverse
 
 class PublishManager(models.Manager):
     def get_queryset(self):
-        return super(PublishManager, self).get_queryset().filter(status=True)
+        return super(PublishManager, self).get_queryset().filter(status='p')
 
 
 class Category(models.Model):
@@ -27,6 +27,12 @@ class Category(models.Model):
 
 
 class Post(models.Model):
+    STATUS_CHOICES = (
+        ('d','draft'),
+        ('p','published'),
+        ('i','investigate'),
+        ('r','reject'),
+    )
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     title = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255)
@@ -36,7 +42,7 @@ class Post(models.Model):
     publish = models.DateTimeField(default=timezone.now)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    status = models.BooleanField(default=False)
+    status = models.CharField(max_length=1, choices=STATUS_CHOICES)
 
     class Meta:
         ordering = ('-publish',)
